@@ -1,0 +1,25 @@
+﻿@model dynamic
+
+<table class="table">
+    <tr>
+        <td>Band Title</td>
+        <td>Add Band To Concert</td>
+    </tr>
+    @foreach (var item in Model.Band)
+
+    {
+        <tr>
+            <td><a asp-controller="Home" asp-action="BandDetails" asp-route-id="@item.BandID">@item.BandTitle</a></td>
+            <form method="post">
+                <input type="hidden" name="BandID" value="@item.BandID" />
+                @foreach (var id in Model.ConcertID) 
+                {
+                    <input type="hidden" name="ConcertID" value="@id" />
+                }
+
+                <td><p><input type="submit" value="Add" /></p></td>
+            </form>
+        </tr>
+    }
+
+</table>

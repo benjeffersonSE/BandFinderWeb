@@ -1,0 +1,48 @@
+﻿@foreach (var item in Model)
+{
+
+    ViewData["Title"] = "Request Booking - " + @item.BandTitle;
+    ViewData["PageHeading"] = "Request Booking - " + @item.BandTitle;
+
+    <div class="form">
+
+        <form class="half-width">
+            <h1 style="padding: 2%">Request Booking</h1>
+            <div>
+                <label for="BandTitle"><h2>Band Name</h2></label>
+
+                <input type="text" id="BandTitle" name="BandTitle" value="@item.BandTitle" readonly />
+
+            </div>
+            <div>
+                <label for="BandDate"><h2>Date</h2></label>
+
+                <input type="date" id="BandDate" name="BandDate" />
+
+            </div>
+            <div>
+                <label for="StartTime"><h2>Start Time</h2></label>
+
+                <input type="time" id="StartTime" name="StartTime" />
+
+            </div>
+
+            <div>
+                <label for="EndTime"><h2>End Time</h2></label>
+
+                <input type="time" id="EndTime" name="EndTime" />
+
+            </div>
+
+            <div>
+                <label for="BandCost"><h2>Hire Price</h2></label>
+
+                <input type="text" id="BandCost" name="BandCost" value="&pound;@((item.BandPrice).ToString("0.00"))" readonly />
+            </div>
+
+            <div class="bookingButton">
+                <a asp-controller="Home" asp-action="BookingDetails" asp-route-id="@item.BandID">Request Booking</a>
+            </div>
+        </form>
+    </div>
+}

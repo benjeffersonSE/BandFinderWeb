@@ -2,33 +2,665 @@
     box-sizing:border-box;
 }
 body {
-    font-family: Helvetica, Arial, sans-serif;
-    margin:0;
-    padding:0;
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: .625rem;
+    color: black;
+    margin: 0;
+    padding: 0;
 }
-header {
-    background-color: #ccc;
+
+@font-face 
+{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 100;
+    src: url(https://fonts.gstatic.com/s/roboto/v20/KFOkCnqEu92Fr1MmgVxFIzIXKMnyrYk.woff2) format('woff2');
+    unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+
+.container 
+{
+    width: 100%;
+    min-height: 100vh;
+}
+
+a, a:visited, a:hover, a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
+header 
+{
+    background-color: #fff;
     overflow: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
-main{
-    display:flex;
-    flex-direction:column;
+
+.mainHeader {
+    vertical-align: baseline;
+    align-items: center; 
+    width: 100%;
+    padding: 2rem 4%;
 }
-.shoppingCart{
-    
+
+.mainNav 
+{
+    background-color: #fff;
+    display: none;
+    width: 100%;
 }
+
+.mainNav ul 
+{
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.mainNav ul li 
+{
+    border-top: 1px solid #000;
+    padding: 1em 0;
+}
+
+.mainNav ul li a 
+{
+    margin: auto;
+    display: inline-block;
+    width: 100%;
+    font-weight: 300;
+    text-decoration: none;
+}
+
+.menu {
+    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, Verdana, sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    font-style: normal;
+    color: black;
+    line-height: 1.4;
+    text-transform: none;
+    letter-spacing: 0;
+    padding: 2rem 0 0;
+}
+
+.brandImage img
+{
+    max-height: 6rem;
+    max-width: 700px
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 300;
+    font-size: 1.5em;
+    font-style: normal;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: 0;
+}
+
+.Welcome {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    max-width: 1200px;
+    padding: 5px;
+    margin-top: 10em;
+    margin-bottom: 20em;
+}
+
+.Welcome h1 {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-size: 4.5em;
+    font-style: normal;
+    line-height: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    margin: auto;
+    text-align: center;
+    padding-top: 25%;
+    padding-bottom: 25%;
+}
+
+
+.WelcomeSmall {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    max-width: 1200px;
+    padding: 5px;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+.Banner h1 {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-size: 3em;
+    font-style: normal;
+    line-height: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #fff;
+    margin: auto;
+    text-align: center;
+    padding-top: 25%;
+    padding-bottom: 25%;
+}
+
+.Banner2 h1 {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-size: 3em;
+    font-style: normal;
+    line-height: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #fff;
+    margin: auto;
+    text-align: center;
+    padding-top: 25%;
+    padding-bottom: 25%;
+}
+
+.Banner {
+    background-image: url(../images/lordHuron.png);
+    min-height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    width: 100%;
+}
+
+.Banner2 {
+    background-image: url(../images/theLeadmill.jpg);
+    min-height: 600px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    z-index: 0;
+    width: 100%;
+}
+
+.titles 
+{
+    vertical-align: baseline;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.grid {
+    grid-template-rows: 1fr min-content;
+    font-size: 0;
+    letter-spacing: 0;
+    width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+    /*position: absolute;
+    left: 0;
+    right: 0;*/
+}
+
+.grid, .stacked {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.grid li {
+    display: inline-block;
+    grid-template-rows: 1fr min-content;
+    font-size: 10px;
+    vertical-align: top;
+    width: 100%;
+    object-fit: cover;
+}
+
+.grid img {
+    width: 50vw;
+    height: 50vw;
+    display: block;
+    object-fit: cover;
+}
+
+.Result img{
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.BandInfo 
+{
+    width: 90%;
+    margin: auto;
+    text-align:justify;
+}
+
+#ConcertHolder {
+    display: block;
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+}
+
+.ConcertInfo {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+    max-width: 1200px;
+}
+
+.mainImage img {
+    width: 100%;
+    margin: auto;
+}
+
+.col-sm-2 li {
+    width: 50%;
+}
+
+.smallResult {
+    width: 100% !important;
+    height: 100%;
+}
+
+.smallResult img {
+    width: 100vw;
+    height: 100vw;
+}
+
+.placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    object-fit: cover;
+    position: relative;
+}
+
+.project-block-titles {
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 2rem;
+}
+
+.bandTitle {
+    width: 100%;
+    height: 100%;
+    padding-top: 90%;
+    font-weight: 300;
+    font-style: normal;
+    opacity: 0;
+}
+
+.project-block-titles:hover {
+    transition: .5s ease;
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+}
+
+.project-block-titles:hover .bandTitle{
+    transition: .5s ease;
+    opacity: 1;
+    color: #fff;
+}
+
+.burgerMenu {
+    margin-top: 11px;
+    flex: 0;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-top: 0px;
+    padding-bottom: 10px;
+}
+
+.bars {
+    float: right;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.bar1, .bar2, .bar3 {
+    border-radius: 25px;
+    width: 30px;
+    height: 4px;
+    margin: 5px 0;
+    background-color: black;
+}
+
+.shoppingCart {
+}
+
 .msg {
     background-color: #F2811D;
     color: #260707;
-    display:inline-block;
-    padding:3px 5px;
+    display: inline-block;
+    padding: 3px 5px;
 }
-table{
-    border-collapse:collapse;
+
+.table {
+    width: 90%;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    overflow-x: auto;
+    margin: auto;
 }
-th{
-    background-color:#ccc;
+
+
+th {
+    height: 70px;
+    background-color: #ccc;
 }
-td,th{
-    border:1px solid #ccc;
+
+td, th {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+tr {
+    vertical-align: center;
+}
+
+td {
+    vertical-align: center;
+    border: none;
+    border-top: 1px solid cadetblue;
+    border-bottom: 1px solid cadetblue;
+}
+
+
+.form 
+{
+    text-align: left;
+    flex-basis: 100%;
+}
+
+.fullWidth div 
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.fullWidth {
+width: 90%;
+margin: auto;
+padding-bottom: 4%;
+}
+
+input[type ='text'], input[type ='date'], input[type ='time'], input[type ='file'], select {
+    width: 100%;
+    padding: 15px 10px;
+}
+
+input[type="submit"]
+{
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px 10px;
+    cursor: pointer;
+}
+
+.BandDetails 
+{
+    padding-top: 20px;
+}
+
+.ConcertDetails 
+{
+    padding-top: 20px;
+}
+
+.BandTitle {
+    width: 90%;
+    margin: auto;
+    max-width: 1200px;
+    padding: 5px;
+    margin-bottom: 2em;
+}
+
+.ConcertTitle {
+    margin: auto;
+    max-width: 1200px;
+    text-align: center;
+}
+
+.BandTitle h1 
+{
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-size: 4.5em;
+    font-style: normal;
+    line-height: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #000;
+    margin: 0;
+}
+
+.ConcertTitle h1 {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-size: 4.5em;
+    font-style: normal;
+    line-height: 0.9;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #000;
+    margin: 0;
+}
+
+h1, h2, h3, p {
+    font-family: "Roboto","Helvetica Neue",Helvetica,Arial,Verdana,sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    line-height: 1.3;
+    text-transform: none;
+    letter-spacing: 0;
+    color: #000;
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+}
+
+.BandButton {
+    margin: auto;
+    width: 90%;
+    max-width: 1200px;
+    padding: 5px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.BandButton a {
+    width: fit-content;
+    padding: 10px;
+    background-color: #D5343F;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+.bookingButton {
+    margin: auto;
+    width: 100%;
+    max-width: 1200px;
+    margin-top: 3em;
+    margin-bottom: 1em;
+}
+
+.bookingButton a {
+    width: fit-content;
+    padding: 10px;
+    background-color: #D5343F;
+    color: whitesmoke;
+    padding: 20px;
+}
+
+.concertTable {
+    display: table;
+    border-spacing: 5px;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.concertRow {
+    width: 100%;
+    display: table-row;
+    margin-bottom: 5px;
+    height: 75px;
+}
+
+.concertDate {
+    display: table-cell;
+    background-color: #D5343F;
+    width: 80px;
+    text-align: center;
+    vertical-align: middle;
+    color: whitesmoke;
+}
+
+.concertSummery {
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    padding-left: 2em;
+}
+
+.concertTickets {
+    float: right;
+    display: table-cell;
+}
+
+.fade {
+    opacity: 0;
+}
+
+.animated {
+    -webkit-animation-duration: 5s;
+    animation-duration: 5s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeOut {
+    100% {
+        opacity: 0;
+    }
+
+    0% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut 
+{
+    100% {
+        opacity: 0;
+    }
+
+    0% {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation-name: fadeIn;
+    animation-name: fadeIn;
+}
+
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+    animation-name: fadeOut;
+}
+
+.half-width {
+    width: 90%;
+    margin: auto;
+}
+
+.login {
+    display: inline-flex;
+    align-items: baseline;
+    padding-top: .4em;
+}
+
+.login > p {
+    margin: 0;
+    padding-bottom: 0;
+}
+
+.login > form > button.delete {
+    margin-top: 0;
+    background-color: transparent;
+    text-decoration: underline;
+    border: none;
+    cursor: pointer;
+}
+
+.selection 
+{
+    display: block;
+    width: 100%;
+    margin: 0;
+}
+
+footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+footer .row {
+    display: flex;
+    flex-direction: column;
+    padding-left: 40px;
 }

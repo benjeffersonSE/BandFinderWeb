@@ -4,7 +4,7 @@
  * https://jqueryvalidation.org/
  *
  * Copyright (c) 2017 Jörn Zaefferer
- * Released under the MIT license
+ * BandDated under the MIT license
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -845,7 +845,7 @@ $.extend( $.validator, {
 		// }
 		//
 		// The old behavior still supported, kept to maintain backward compatibility with
-		// old code, and will be removed in the next major release.
+		// old code, and will be removed in the next major BandDate.
 		defaultMessage: function( element, rule ) {
 			if ( typeof rule === "string" ) {
 				rule = { method: rule };

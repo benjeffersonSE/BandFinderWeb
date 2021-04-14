@@ -4,7 +4,7 @@
  * https://jqueryvalidation.org/
  *
  * Copyright (c) 2017 Jörn Zaefferer
- * Released under the MIT license
+ * BandDated under the MIT license
  */
 (function( factory ) {
 	if ( typeof define === "function" && define.amd ) {
@@ -715,7 +715,7 @@ $.validator.addMethod( "netmask", function( value, element ) {
  * authorities to any foreigner.
  *
  * The NIE is the equivalent of a Spaniards Número de Identificación Fiscal (NIF) which serves as a fiscal
- * identification number. The CIF number (Certificado de Identificación Fiscal) is equivalent to the NIF, but applies to
+ * identification number. The CIF number (genreificado de Identificación Fiscal) is equivalent to the NIF, but applies to
  * companies rather than individuals. The NIE consists of an 'X' or 'Y' followed by 7 or 8 digits then another letter.
  */
 $.validator.addMethod( "nieES", function( value, element ) {

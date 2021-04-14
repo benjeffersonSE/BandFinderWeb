@@ -1,0 +1,77 @@
+﻿@using BandFinder.Models
+@model dynamic
+
+@foreach (var item in Model.Bands) 
+{
+    {
+        ViewData["Title"] = @item.BandTitle;
+        ViewData["PageHeading"] = @item.BandTitle;
+    }
+
+    <div class="BandTitle">
+        <h1>
+            @item.BandTitle        
+        </h1>
+    </div>
+
+    <div class="BandButton">
+        <a asp-controller="Home" asp-action="BookingDetails" asp-route-id="@item.BandID">Request Booking</a>
+    </div>
+
+    <div class="BandDetails">
+            <div class="mainImage">
+                <img src="~/images/@item.BandImage" alt="@item.BandTitle" />
+            </div>
+
+            <div class="BandInfo">
+                <h2>@item.BandTitle</h2>
+                <p>@item.BandDescription</p>
+                <p>Genre: @item.BandGenre</p>
+                <p>Founded:  @item.BandDate.ToString("yyyy")</p>
+                <p>Location: @item.BandArea</p>
+                <p>Avg Rating: @item.Stars / 5</p>
+                <p>Hire Price: &pound;@((item.BandPrice).ToString("0.00"))</p>
+
+            </div>
+    </div>
+}
+
+
+<div class="concertTable">
+
+    <h1>Concerts</h1>
+    @foreach (var item in Model.Concerts)
+    {
+        if (Model.Concerts.Count > 0)
+        {
+            <div class="concertRow">
+                <div class="concertDate">
+                    @item.Date.ToString("MMMM")
+                    <br>
+                    @item.Date.ToString("dd")
+                </div>
+
+                <div class="concertSummery">
+                    @item.Venue
+                    <br>
+                    @item.Date.ToString("MMMM dd") | @item.Time
+                </div>
+
+                <div class="concertTickets">
+                    <div class="BandButton">
+                        <a asp-controller="Home" asp-action="ConcertDetails" asp-route-id="@item.ConcertID">Tickets</a>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @if (Model.Concerts.Count == 0)
+    {
+        <h2>Oh no! There are no concerts!</h2>
+        <p>No need to worry. You can find more concerts and bands in the local area. Even better, book the band.</p>
+    }
+</div>
+
+
+
+

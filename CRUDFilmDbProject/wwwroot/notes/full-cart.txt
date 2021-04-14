@@ -18,7 +18,7 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Film</th>
+        <th>Band</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Cost</th>
@@ -29,16 +29,16 @@
     @foreach (var item in Model)
     {
 
-    cartTotal += item.OrderQuantity * item.FilmPrice;
+    cartTotal += item.OrderQuantity * item.BandPrice;
     <tr>
-        <td>@item.FilmID</td>
-        <td>@item.FilmTitle</td>
+        <td>@item.BandID</td>
+        <td>@item.BandTitle</td>
         <td>@item.OrderQuantity</td>
-        <td>@item.FilmPrice</td>
-        <td>&pound;@((item.OrderQuantity * item.FilmPrice).ToString("0.00"))</td>
+        <td>@item.BandPrice</td>
+        <td>&pound;@((item.OrderQuantity * item.BandPrice).ToString("0.00"))</td>
         <td>
             <form method="post" asp-action="RemoveCartItem">
-                <input type="hidden" name="FilmID" id="FilmID" value="@item.FilmID" />
+                <input type="hidden" name="BandID" id="BandID" value="@item.BandID" />
                 <input type="submit" value="Delete" />
             </form>
         </td>
@@ -76,7 +76,7 @@
 <table>
     <tr>
         <th>ID</th>
-        <th>Film</th>
+        <th>Band</th>
         <th>Quantity</th>
         <th>Price</th>
         <th>Cost</th>
@@ -87,16 +87,16 @@
     @foreach (var item in Model)
     {
 
-    cartTotal += item.OrderQuantity * item.FilmPrice;
+    cartTotal += item.OrderQuantity * item.BandPrice;
     <tr>
-        <td>@item.FilmID</td>
-        <td>@item.FilmTitle</td>
+        <td>@item.BandID</td>
+        <td>@item.BandTitle</td>
         <td>@item.OrderQuantity</td>
-        <td>@item.FilmPrice</td>
-        <td>&pound;@((item.OrderQuantity * item.FilmPrice).ToString("0.00"))</td>
+        <td>@item.BandPrice</td>
+        <td>&pound;@((item.OrderQuantity * item.BandPrice).ToString("0.00"))</td>
         <td>
             <form method="post" asp-action="RemoveCartItem">
-                <input type="hidden" name="FilmID" id="FilmID" value="@item.FilmID" />
+                <input type="hidden" name="BandID" id="BandID" value="@item.BandID" />
                 <input type="submit" value="Delete" />
             </form>
         </td>
@@ -118,16 +118,16 @@
 
 <form method="post">
             <div>
-                <label for="FilmID">Film ID</label>
-                <input type="text" value="@Model.FilmID" id="FilmID" name="FilmID" />
+                <label for="BandID">Band ID</label>
+                <input type="text" value="@Model.BandID" id="BandID" name="BandID" />
             </div>
             <div>
-                <label for="FilmTitle">Film Title</label>
-                <input type="text" value="@Model.FilmTitle" id="FilmTitle" name="FilmTitle" />
+                <label for="BandTitle">Band Title</label>
+                <input type="text" value="@Model.BandTitle" id="BandTitle" name="BandTitle" />
             </div>
             <div>
-                <label for="FilmPrice">Film Price</label>
-                <input type="text" value="@Model.FilmPrice" id="FilmPrice" name="FilmPrice" />
+                <label for="BandPrice">Band Price</label>
+                <input type="text" value="@Model.BandPrice" id="BandPrice" name="BandPrice" />
             </div>
             <div>
                 <label for="OrderQuantity">Quantity</label>

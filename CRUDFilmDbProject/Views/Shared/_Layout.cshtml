@@ -3,48 +3,72 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Sheffield Streams</title>
+    <meta name="description"
+          content="Band Finder is a web service which allows users to find local bands, gigs and book bands for venues!">
+    <title>@ViewData["Title"] - Band Finder</title>
     <link rel="stylesheet" href="~/css/mobile.css" />
-    <link rel="stylesheet" media="only screen and (min-width : 600px)" href="~/css/desktop.css">
+    <link rel="stylesheet" media="only screen and (min-width : 900px)" href="~/css/desktop.css">
+    <link rel="icon" type="image/x-icon" href="~/images/hedgeboi.png" alt="" />
 </head>
 <body>
-    <header>
-        <div class="innerHeader">
-            <div>
-                <h1>@ViewData["PageHeading"]</h1>
-                <nav>
-                    <ul>
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="AllFilms">Film List</a></li>
-                        <li><a asp-controller="Home" asp-action="Search">Search</a></li>
-                        <li><a asp-controller="CMS" asp-action="Index">CMS</a></li>
-                    </ul>
-                </nav>
+    <div class="container">
+        <header class="mainHeader">
+            
+            <div class="titles">
+                <div class="imageWrap">
+                    <a href="/" class="brandImage" aria-label="Home Icon">
+                        <img src="~/images/hedgeboi.png" alt="">
+                    </a>
+                </div>
+
+                <div class="burgerMenu">
+                    <div class="bars">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                </div>
 
             </div>
-
-            @if (User.Identity.IsAuthenticated)
-            {
-                <div class="login">
-                    <p>@User.Identity.Name</p>
-                    <p><a asp-controller="CMS" asp-action="Index">CMS</a></p>
-                    <form asp-controller="Security" asp-action="SignOut" method="post">
-                        <button type="submit" class="delete">Sign Out</button>
-                    </form>
+            <nav class="mainNav">
+                <div class="row">
+                    <ul class="menu">
+                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                        <li><a asp-controller="Home" asp-action="AllBands">Band List</a></li>
+                        <li><a asp-controller="Home" asp-action="Events">Events</a></li>
+                        <li><a asp-controller="CMS" asp-action="Index">CMS</a></li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            //<li><a asp-controller="Security" asp-action="SignOut" method="post">@User.Identity.Name | Logout</a></li>
+                            <li>
+                                <div class="login">
+                                    <p>@User.Identity.Name | </p>
+                                    <form asp-controller="Security" asp-action="SignOut" method="post">
+                                        <button type="submit" class="delete">Sign Out</button>
+                                    </form>
+                                </div>
+                            </li>
+                        }
+                    </ul>
                 </div>
-            }
+            </nav>
+        </header>
 
-        </div>
-    </header>
-    <main>
+        <main>
 
-        @RenderBody()
+            @RenderBody()
 
-    </main>
-
+        </main>
+    </div>
 
     <footer>
+        <div class="row">
+            <h3>Ben Jefferson &copy; 2021</h3>
+        </div>
     </footer>
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/site.js"></script>
 
 </body>
 </html>

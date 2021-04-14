@@ -1,24 +1,83 @@
-﻿@{
+﻿@model dynamic
+
+@{
     Layout = "_CMS";
+    int Counter = 0;
+    List<int> concertIds = new List<int>();
+    @Html.AntiForgeryToken();
 }
-<h1>All Films</h1>
+    <h1>All Bands</h1>
 
-<p><a asp-controller="CMS" asp-action="AddFilm" class="add">Add Film</a></p>
+    <div style="display: flex; justify-content: space-between">
+        <p><a asp-controller="CMS" asp-action="AddBand" class="add">Add Band</a></p>
+        <p><a asp-controller="CMS" asp-action="AddConcert" class="add">Add Concert</a></p>
+    </div>
 
-<table class="table">
-    <tr>
-        <td>Film Title</td>
-        <td>Edit</td>
-        <td>Delete</td>
-    </tr>
-    @foreach (var item in Model)
-
-    {
+    <table class="table">
         <tr>
-            <td><a asp-controller="Home" asp-action="FilmDetails" asp-route-id="@item.FilmID">@item.FilmTitle</a></td>
-            <td><p><a asp-controller="CMS" asp-action="UpdateFilm" asp-route-id="@item.FilmID" class="edit">Update</a></p></td>
-            <td><p><a asp-controller="CMS" asp-action="DeleteFilm" asp-route-id="@item.FilmID" class="delete">Delete</a></p></td>
+            <td>Band Title</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @foreach (var item in Model.Bands)
+            {
+        <tr>
+            <td><a asp-controller="Home" asp-action="BandDetails" asp-route-id="@item.BandID">@item.BandTitle</a></td>
+            <td><p><a asp-controller="CMS" asp-action="UpdateBand" asp-route-id="@item.BandID" class="edit">Update</a></p></td>
+            <td><p><a asp-controller="CMS" asp-action="DeleteBand" asp-route-id="@item.BandID" class="delete">Delete</a></p></td>
         </tr>
     }
 
-</table>
+    </table>
+
+    <br>
+    <br>
+
+    <table class="table">
+        <tr>
+            <td>Concert</td>
+            <td>Add Band To Concert</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @foreach (var item in Model.Concerts)
+            {
+                string Time = string.Format("{0:hh\\:mm}", @item.Time);
+            string Venue = "";
+            string Date = "";
+            int BandID = 0;
+            string BandTitle = "";
+            Counter++;
+
+        <tr id="member @Counter" onclick="OpenRows(this.id)" class="topRow">
+            <td><a asp-controller="Home" asp-action="ConcertDetails" asp-route-id="@item.ConcertID">@item.Venue | @item.Date.ToString("MMMM dd") | @Time</a></td>
+            <td><p><a asp-controller="CMS" asp-action="AddBandToConcert" asp-route-id="@item.ConcertID" class="add">Add Band</a></td>
+            <td><p><a asp-controller="CMS" asp-action="UpdateConcert" asp-route-id="@item.ConcertID" class="edit">Update</a></p></td>
+            <td><p><a asp-controller="CMS" asp-action="DeleteConcert" asp-route-id="@item.ConcertID" class="delete">Delete</a></p></td>
+        </tr>
+        @foreach (var link in Model.Link)
+                {
+        @foreach (var band in Model.Bands)
+                    {
+                        if (band.BandID == link.BandID && link.ConcertID == item.ConcertID)
+                        {
+                            BandTitle = @band.BandTitle;
+                            BandID = @band.BandID;
+
+        <tr id="member @Counter" class="tableRow hidden">
+            <td colspan="3"><a asp-controller="Home" asp-action="BandDetails" asp-route-id="@BandID">@BandTitle</a></td>
+            <form asp-controller="CMS" asp-action="RemoveBandFromConcert" method="post">
+                <input type="hidden" name="BandID" value="@link.BandID" />
+                <input type="hidden" name="ConcertID" value="@link.ConcertID" />
+                <td><p><input type="submit" value="Remove" class="delete" /></p></td>
+            </form>
+        </tr>
+}
+                }
+                }
+            }
+    </table>
+
+    <br>
+    <br>
+

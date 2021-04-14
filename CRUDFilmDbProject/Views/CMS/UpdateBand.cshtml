@@ -1,0 +1,86 @@
+﻿@model BandFinder.Models.BandForm
+@{
+    Layout = "_CMS";
+}
+<h1>@Model.BandTitle</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+
+    <input type="hidden" name="BandID" value="@Model.BandID" />
+    <input type="hidden" name="BandImageName" value="@ViewBag.ImageNameLarge" />
+    <input type="hidden" name="BandImageMobileName" value="@ViewBag.ImageNameSmall" />
+
+    <div>
+        <label>Band Title</label>
+        <input asp-for="BandTitle" />
+        <span asp-validation-for="BandTitle" class="error"></span>
+    </div>
+
+    <div>
+        <label asp-for="BandGenre">Band Genre</label>
+        <input asp-for="BandGenre" />
+    </div>
+
+    <div>
+        <label asp-for="BandDescription">Band Description</label>
+        <textarea asp-for="BandDescription"></textarea>
+    </div>
+
+    <div>
+        <td><p><a asp-controller="CMS" asp-action="UpdateBandImageDesktop" asp-route-id="@Model.BandID" class="edit">Update Desktop Image</a></p></td>
+    </div>
+
+    <div>
+        <td><p><a asp-controller="CMS" asp-action="UpdateBandImageMobile" asp-route-id="@Model.BandID" class="edit">Update Mobile Image</a></p></td>
+    </div>
+
+    <div>
+        <label asp-for="BandPrice">Band Price</label>
+        <input type="text" asp-for="BandPrice" />
+    </div>
+
+    <div>
+        <label asp-for="Stars">Stars</label>
+        <input type="text" asp-for="Stars" />
+    </div>
+
+    <div>
+        <label asp-for="BandDate">BandDate Date</label>
+        <input type="date" asp-for="BandDate" />
+    </div>
+
+    <div>
+        <label asp-for="BandArea">Band Area</label>
+        <input type="text" asp-for="BandArea" />
+    </div>
+
+    <div>
+        <input type="submit" value="Update" class="edit" />
+    </div>
+
+</form>
+
+<script>
+    document.getElementById('selectedLargeFile').onchange = uploadOnChangeLarge;
+
+    function uploadOnChangeLarge() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameLarge').value = filename;
+    }
+
+    document.getElementById('selectedSmallFile').onchange = uploadOnChangeSmall;
+
+    function uploadOnChangeSmall() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameSmall').value = filename;
+    }
+</script>

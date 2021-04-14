@@ -1,0 +1,91 @@
+﻿@model BandFinder.Models.BandForm
+@{
+    Layout = "_CMS";
+}
+<h1>Add Band</h1>
+
+<p>@ViewBag.msg</p>
+
+<form method="post" enctype="multipart/form-data">
+    <div>
+        <label asp-for="BandTitle">Band Title</label>
+        <input type="text" asp-for="BandTitle" />
+        <span asp-validation-for="BandTitle" class="error"></span>
+    </div>
+
+    <div>
+        <label asp-for="BandGenre">Band Genre</label>
+        <input type="text" asp-for="BandGenre" />
+        <span asp-validation-for="BandTitle" class="error"></span>
+    </div>
+
+    <div>
+        <label asp-for="BandDescription">Band Description</label>
+        <textarea asp-for="BandDescription"></textarea>
+    </div>
+
+    <div>
+        <label asp-for="BandImage">Band Image Large</label>
+        <input id="fileNameLarge" type="text" asp-for="BandImageName"/>
+        <input asp-for="BandImage" type="file" id="selectedLargeFile" style="display: none;" />
+        <input type="button" class="add" value="Browse..." onclick="document.getElementById('selectedLargeFile').click();" />
+        <span asp-validation-for="BandImage"></span>
+    </div>
+
+    <div>
+        <label asp-for="BandImageMobile">Band Image Small</label>
+        <input id="fileNameSmall" type="text" asp-for="BandImageMobileName"/>
+        <input asp-for="BandImageMobile" type="file" id="selectedSmallFile" style="display: none;" />
+        <input type="button" class="add" value="Browse..." onclick="document.getElementById('selectedSmallFile').click();" />
+        <span asp-validation-for="BandImageMobile"></span>
+    </div>
+
+    <div>
+        <label asp-for="BandPrice">Band Price</label>
+        <input type="text" asp-for="BandPrice" />
+    </div>
+
+    <div>
+        <label asp-for="Stars">Stars</label>
+        <input type="text" asp-for="Stars" />
+    </div>
+
+    <div>
+        <label asp-for="BandDate">Founded Date</label>
+        <input type="date" asp-for="BandDate" />
+    </div>
+
+    <div>
+        <label asp-for="BandArea">Band Area</label>
+        <input type="text" asp-for="BandArea" />
+    </div>
+
+    <div>
+        <input type="submit" value="Add" class="add" />
+    </div>
+
+</form>
+
+<script>
+    document.getElementById('selectedLargeFile').onchange = uploadOnChangeLarge;
+
+    function uploadOnChangeLarge() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameLarge').value = filename;
+    }
+
+    document.getElementById('selectedSmallFile').onchange = uploadOnChangeSmall;
+
+    function uploadOnChangeSmall() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameSmall').value = filename;
+    }
+</script>

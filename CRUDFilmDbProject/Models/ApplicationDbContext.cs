@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 
-namespace CRUDFilmDbProject.Models
+namespace BandFinder.Models
 {
     public class ApplicationDbContext: DbContext
     {
@@ -11,6 +11,14 @@ namespace CRUDFilmDbProject.Models
             {
             }
 
-        public DbSet<Film> Films { get; set; }
+        public DbSet<Band> Bands { get; set; }
+        public DbSet<Concert> Concerts { get; set; }
+        public DbSet<BandConcert> BandConcert { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<BandConcert>()
+                .HasKey(c => new { c.ConcertID, c.BandID });
+        }
     }
 }

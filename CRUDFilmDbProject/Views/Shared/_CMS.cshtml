@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Sheffield Streams</title>
+    <meta name="description"
+          content="Band Finder is a web service which allows users to find local bands, gigs and book bands for venues!">
+    <title>@ViewData["Title"] - Band Finder</title>
     <link rel="stylesheet" href="~/css/cms.css" />
+    <link rel="icon" type="image/x-icon" href="~/images/hedgeboi.png" alt="" />
 </head>
 <body>
     <header>
@@ -14,14 +17,21 @@
                 <nav>
                     <ul>
                         <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="AllFilms">Film List</a></li>
-                        <li><a asp-controller="Home" asp-action="Search">Search</a></li>
+                        <li><a asp-controller="Home" asp-action="AllBands">Band List</a></li>
+                        <li><a asp-controller="Home" asp-action="Events">Events</a></li>
                         <li><a asp-controller="CMS" asp-action="Index">CMS Home</a></li>
                     </ul>
                 </nav>
             </div>
-
-
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="login">
+                    <p>Welcome @User.Identity.Name</p>
+                    <form asp-controller="Security" asp-action="SignOut" method="post">
+                        <button type="submit" class="delete">Sign Out</button>
+                    </form>
+                </div>
+            }
         </div>
     </header>
     <main>
@@ -34,6 +44,9 @@
 
     <footer>
     </footer>
-    @RenderSection("Scripts", required: false)
+
+    <script src="~/js/jquery-3.4.1.min.js"></script>
+    <script src="~/js/site.js"></script>
+
 </body>
 </html>

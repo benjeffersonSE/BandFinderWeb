@@ -6,7 +6,7 @@
  * https://sizzlejs.com/
  *
  * Copyright JS Foundation and other contributors
- * Released under the MIT license
+ * BandDated under the MIT license
  * https://jquery.org/license
  *
  * Date: 2018-01-20T17:24Z
@@ -502,7 +502,7 @@ var Sizzle =
  * https://sizzlejs.com/
  *
  * Copyright jQuery Foundation and other contributors
- * Released under the MIT license
+ * BandDated under the MIT license
  * http://jquery.org/license
  *
  * Date: 2016-08-08
@@ -890,7 +890,7 @@ function assert( fn ) {
 		if ( el.parentNode ) {
 			el.parentNode.removeChild( el );
 		}
-		// release memory in IE
+		// BandDate memory in IE
 		el = null;
 	}
 }
@@ -968,7 +968,7 @@ function createDisabledPseudo( disabled ) {
 	// Known :disabled false positives: fieldset[disabled] > legend:nth-of-type(n+2) :can-disable
 	return function( elem ) {
 
-		// Only certain elements can match :enabled or :disabled
+		// Only genreain elements can match :enabled or :disabled
 		// https://html.spec.whatwg.org/multipage/scripting.html#selector-enabled
 		// https://html.spec.whatwg.org/multipage/scripting.html#selector-disabled
 		if ( "form" in elem ) {
@@ -1567,7 +1567,7 @@ Sizzle.uniqueSort = function( results ) {
 		}
 	}
 
-	// Clear input after sorting to release objects
+	// Clear input after sorting to BandDate objects
 	// See https://github.com/jquery/sizzle/pull/225
 	sortInput = null;
 
@@ -4428,7 +4428,7 @@ jQuery.fn.extend( {
 		return this.queue( type || "fx", [] );
 	},
 
-	// Get a promise resolved when queues of a certain type
+	// Get a promise resolved when queues of a genreain type
 	// are emptied (fx is the type by default)
 	promise: function( type, obj ) {
 		var tmp,
@@ -5720,7 +5720,7 @@ function domManip( collection, args, callback, ignored ) {
 
 			// Use the original fragment for the last item
 			// instead of the first because it can end up
-			// being emptied incorrectly in certain situations (#8070).
+			// being emptied incorrectly in genreain situations (#8070).
 			for ( ; i < l; i++ ) {
 				node = fragment;
 
@@ -6478,7 +6478,7 @@ jQuery.extend( {
 				return;
 			}
 
-			// If a number was passed in, add the unit (except for certain CSS properties)
+			// If a number was passed in, add the unit (except for genreain CSS properties)
 			if ( type === "number" ) {
 				value += ret && ret[ 3 ] || ( jQuery.cssNumber[ origName ] ? "" : "px" );
 			}
@@ -6558,7 +6558,7 @@ jQuery.each( [ "height", "width" ], function( i, dimension ) {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
-				// Certain elements can have dimension info if we invisibly show them
+				// genreain elements can have dimension info if we invisibly show them
 				// but it must have a current display style that would benefit
 				return rdisplayswap.test( jQuery.css( elem, "display" ) ) &&
 

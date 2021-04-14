@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "Concerts";
+    ViewData["PageHeading"] = "Concerts";
+}
+
+
+<div class="concertTable">
+        
+    @foreach (var item in Model)
+    {
+        <div class="concertRow">
+            <div class="concertDate">
+                @item.Date.ToString("MMMM")
+                <br>
+                @item.Date.ToString("dd")
+            </div>
+            
+            <div class="concertSummery">
+                @item.Venue
+                <br>
+                @item.Date.ToString("MMMM dd") | @item.Time
+            </div>
+             
+            <div class="concertTickets">
+                <form asp-controller="Home" asp-action="ConcertDetails" asp-route-id="@item.ConcertID">
+                    <input type="hidden" name="ConcertID" value="@item.ConcertID" />
+                    <input type="submit" value="Tickets" class="edit" />
+                </form>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+
+

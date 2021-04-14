@@ -1,6 +1,215 @@
-﻿@{
+﻿@using System;
+@using System.Diagnostics;
+@using System.Threading;
+@using System.Text.Json;
+@using System.Text.Json.Serialization;
+@using Newtonsoft.Json.Linq;
+@using Newtonsoft.Json;
+
+@{
     ViewData["Title"] = "Home Page";
     ViewData["PageHeading"] = "Welcome";
 }
 
-<h1>Films, Films, Films</h1>
+<ul id="myData" class="grid grid-block col-xs-1 col-sm-2 col-md-2 col-lg-4 col-xl-5 "> 
+</ul>
+
+<div class="Welcome">
+    <h1>Band Finder</h1>
+    <h2>Band Finder is an free online web service which allows you to bring the power of music back to your hands!</h2>
+    <h2>From discovering local bands, venues and live shows you can book local bands for private events and venues. Discover new music from the cities you love.</h2>
+</div>
+
+<div class="selection">
+    <div class="Banner">
+        <a asp-controller="Home" asp-action="AllBands"><h1>Band List</h1></a>
+    </div>
+
+    <div class="Banner2">
+        <a asp-controller="Home" asp-action="Events"><h1>Events</h1></a>
+    </div>
+</div>
+
+<script>
+
+    let api = "/Home/IndexApi";
+    var model = [];
+    var usedRandom = [];
+    var usedModel = [];
+    var myData = document.getElementById("myData");
+
+    (function () {
+        // IIFE
+        fetch(api)
+            .then(response => response.json())
+            .then(myJson => {
+
+                var val = 0;
+                var length = myJson.length;
+
+                for (var x = 0; x < 10; x++) {
+                    val = Math.floor(Math.random() * length);
+
+                    while (usedRandom.includes(val)) {
+                        val = Math.floor(Math.random() * length);
+                    }
+
+                    model.push(myJson[val]);
+
+                    usedRandom.push(val);
+                }
+
+                for (var i = 0; i < model.length; i++) {
+                    document.getElementById("myData").innerHTML +=
+                        `<li id="${i}">
+                    <a href="Home/BandDetails/${model[i].BandID}">
+                        <div class="placeholder ratio-1:1">
+                            <img src="/images/${model[i].BandImage}"
+                                            srcset="/images/${model[i].BandImageMobile} 1000w,
+                                                        /images/${model[i].BandImage} 2000w"
+                                            alt="${model[i].BandTitle}" />
+                            <div class="project-block-titles">
+                                <h3 class="bandTitle">${model[i].BandTitle}</h3>
+                            </div>
+                        </div>
+                    </a>
+                    </li>`
+                }
+
+                // use join with template literals to remove extra comma
+            })
+            .catch(() => console.log("damn that Jason"));
+    })()
+
+    var countDownDate = new Date();
+    myTimeSpan = 10000;
+    countDownDate.setTime(countDownDate.getTime() + myTimeSpan)
+
+    // Update the count down every 1 second
+    var x = setInterval(function() {
+
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // If the count down is over, write some text
+        var val = 0;
+        var val2 = 2;
+
+        if (seconds <= 0)
+        {
+            countDownDate.setTime(countDownDate.getTime() + myTimeSpan)
+            distance = countDownDate - now;
+            let modelIndex = "";
+
+            fetch(api)
+                .then(response => response.json())
+                .then(myJson => {
+
+                    var length = myJson.length;
+
+
+                    if (usedModel.length == model.length) // if all numbers have been used up
+                    {
+                        usedModel = []; // reset list
+                    }
+
+                    if (usedRandom.length == length) // if all numbers have been used up
+                    {
+                        usedRandom = []; // reset list
+                        for (var i = 0; i < model.length; i++) {
+                            usedRandom.push(model[i].BandID); // add current list from model
+                        }
+                    }
+
+
+                    val = Math.floor(Math.random() * model.length);
+
+                    while (usedModel.includes(val))
+                    {
+                        val = Math.floor(Math.random() * model.length);
+                    }
+
+                    val2 = Math.floor(Math.random() * length);
+
+                    while (usedRandom.includes(val2))
+                    {
+                        val2 = Math.floor(Math.random() * length);
+                    }
+
+                    usedModel.push(val);
+                    usedRandom.push(val2);
+
+                    document.getElementById("myData").innerHTML = ``
+
+                   
+                    for (var i = 0; i < model.length; i++)
+                    {
+                        if (model[i] == model[val])
+                        {
+                            modelIndex = i;
+
+                            document.getElementById("myData").innerHTML +=
+                            `<li id="${i}" class="animated fadeOut">
+                                <a href="Home/BandDetails/${model[i].BandID}">
+                                    <div class="placeholder ratio-1:1">
+                                        <img src="/images/${model[i].BandImage}"
+                                                        srcset="/images/${model[i].BandImageMobile} 1000w,
+                                                                    /images/${model[i].BandImage} 2000w"
+                                                        alt="${model[i].BandTitle}" />
+                                        <div class="project-block-titles">
+                                            <h3 class="bandTitle">${model[i].BandTitle}</h3>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>`
+
+                            setTimeout(function ()
+                            {
+                                model.splice(val, 1, myJson[val2]);
+
+                                document.getElementById(modelIndex.toString()).className = "animated fadeIn";
+                                document.getElementById(modelIndex.toString()).innerHTML =
+                                    `<a href="Home/BandDetails/${model[modelIndex].BandID}">
+                                        <div class="placeholder ratio-1:1">
+                                            <img src="/images/${model[modelIndex].BandImage}"
+                                                            srcset="/images/${model[modelIndex].BandImageMobile} 1000w,
+                                                                        /images/${model[modelIndex].BandImage} 2000w"
+                                                            alt="${model[modelIndex].BandTitle}" />
+                                            <div class="project-block-titles">
+                                                <h3 class="bandTitle">${model[modelIndex].BandTitle}</h3>
+                                            </div>
+                                        </div>
+                                    </a>`
+
+                            }, 5000); // wait 5 seconds
+
+                            i++;
+                        }
+
+                        document.getElementById("myData").innerHTML +=
+                            `<li id="${i}">
+                            <a href="Home/BandDetails/${model[i].BandID}">
+                                <div class="placeholder ratio-1:1">
+                                    <img src="/images/${model[i].BandImage}"
+                                                    srcset="/images/${model[i].BandImageMobile} 1000w,
+                                                                /images/${model[i].BandImage} 2000w"
+                                                    alt="${model[i].BandTitle}" />
+                                    <div class="project-block-titles">
+                                        <h3 class="bandTitle">${model[i].BandTitle}</h3>
+                                    </div>
+                                </div>
+                            </a>
+                            </li>`
+                    }
+                   
+                });
+        }
+    }, 1000); // wait 10 seconds
+
+</script>

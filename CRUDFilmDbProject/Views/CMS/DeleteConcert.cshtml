@@ -1,0 +1,20 @@
+﻿@model dynamic
+@{
+    Layout = "_CMS";
+    ViewData["Title"] = "Delete Concert";
+}
+
+@foreach (var item in Model.Concerts)
+{
+    <form method="post">
+
+        <input type="hidden" name="ConcertID" value="@item.ConcertID" />
+
+        <p>Delete Concert @item.ConcertID?</p>
+
+        <p><input type="submit" value="Delete" class="delete" /></p>
+
+        <p><a asp-controller="CMS" asp-action="Index" class="add">Keep</a><br></p>
+
+    </form>
+}

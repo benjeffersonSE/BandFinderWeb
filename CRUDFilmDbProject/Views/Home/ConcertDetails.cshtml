@@ -1,0 +1,84 @@
+﻿@using BandFinder.Models
+@model dynamic
+@{
+    ViewData["Title"] = "Concert Details";
+    ViewData["PageHeading"] = "Concert Details";
+}
+
+@foreach (var item in Model.Concerts)
+{
+    string Time = string.Format("{0:hh\\:mm}", @item.Time);
+    <div class="BandTitle">
+        <h1>
+            @item.Venue
+        </h1>
+        <br>
+        <h2>
+            @item.Date.ToString("MMMM dd") | @Time | &pound;@((item.Price).ToString("0.00")) | @item.Area
+        </h2>
+
+    </div>
+
+    <div class="BandButton">
+        <a asp-controller="Home" asp-action="BookingDetails" asp-route-id="@item.ConcertID">Purchase Tickets</a>
+    </div>
+}
+
+@foreach (var item in Model.Bands)
+{
+    <div class="BandDetails">
+        <div class="mainImage">
+            <a asp-controller="Home" asp-action="BandDetails" asp-route-id="@item.BandID">
+                <img src="~/images/@item.BandImage" alt="@item.BandTitle" />
+            </a>
+        </div>
+
+        <div class="BandInfo">
+            <h2>@item.BandTitle</h2>
+            <p>@item.BandDescription</p>
+            <p>Genre: @item.BandGenre</p>
+        </div>
+    </div>
+}
+
+@foreach (var item in Model.Concerts)
+{
+    string Time = string.Format("{0:hh\\:mm}", @item.Time);
+    <div id="ConcertHolder">
+        <div class="ConcertDetails">
+            <div class="ConcertTitle">
+                <h2>Concert Details</h2>
+            </div>
+            <div class="ConcertInfo">
+                <h3>Date:</h3>
+                <p>@item.Date.ToString("MMMM dd")</p>
+                <h3>Doors:</h3>
+                <p>@Time</p>
+                <h3>Costs:</h3>
+                <p>&pound;@((item.Price).ToString("0.00"))</p>
+                <h3>Tickets Left:</h3>
+                <p>@item.RemainingTickets</p>
+            </div>
+        </div>
+        <div class="ConcertDetails">
+            <div class="ConcertTitle">
+                <h2>Venue</h2>
+            </div>
+            <div class="ConcertInfo">
+                <p>@item.Venue</p>
+                <h3>Address:</h3>
+                <p>@item.Address, @item.PostCode, @item.Area</p>
+                <h3>Featuring:</h3>
+                @foreach (var band in Model.Bands)
+                {
+                    <p>@band.BandTitle</p>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+

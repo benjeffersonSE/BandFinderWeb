@@ -1,34 +1,57 @@
 ﻿:root {
     --button-color: #C9D91E;
 }
+
 body {
+    margin: auto;
 }
-main{
+
+main
+{
     margin:auto;
-    max-width:1200px;
-    flex-direction:row;
 }
-header {
+
+.burgerMenu 
+{
+    display: none;
+}
+
+.container 
+{
+    max-width: 1920px;
+    margin: auto;
+    min-height: 70vh;
+}
+
+header 
+{
     position: -webkit-sticky; /* Safari */
     position: sticky;
     top: 0;
     z-index:1;
 }
-.innerHeader {
-    max-width: 1200px;
-    margin: auto;
+
+header nav ul li h1 {
     display: flex;
-    justify-content: space-between;
+    padding: 0;
+    margin: 5px;
+    font-size: 1.2rem;
 }
 
-.login > p {
-    margin-bottom: 0;
-    padding-bottom: 0;
+header, .mainContent, .row {
+    padding: 0 5px;
+    margin: auto;
 }
 
-.login > form > button.delete {
-    margin-top: 0;
+.login {
+    display: inline-flex;
+    align-items: baseline;
+    padding-top: .4em;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
 }
+
 nav ul{
     list-style:none;
     display:flex;
@@ -39,9 +62,55 @@ nav ul li a{
     padding:5px;
     text-decoration:none;
 }
-main{
-    margin-top:25px;
+
+.titles 
+{
+    padding: 0 0 0 6.875%;
 }
+
+.grid img {
+    width: 20vw;
+    height: 20vw;
+    display: block;
+    object-fit: cover;
+}
+
+.col-xl-5 li 
+{
+    width: 20%;
+}
+
+.titles {
+    width: fit-content;
+}
+
+.mainNav {
+    padding: 8px 0;
+    height: auto;
+    display: block !important;
+    width: fit-content;
+    justify-content: normal;
+    padding: 0 6.875% 0 0;
+}
+
+.mainNav, .row ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.mainNav ul li a 
+{
+    font-weight: 300;
+    font-size: 15px;
+}
+
+.mainNav > div > ul > li {
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+}
+
 .shoppingCart {
     flex: 0 0 25%;
 }
@@ -54,7 +123,7 @@ section {
 .wrap{
     flex-wrap: wrap;
 }
-section > div.filmThumb {
+section > div.BandThumb {
     padding: 10px;
     width: calc((100% / 4));
 }
@@ -64,27 +133,62 @@ section > div > h3 > a{
     color:#000;
     text-decoration:none;
 }
-div.filmThumb > div {
+div.BandThumb > div {
     overflow: hidden;
 }
-div.filmThumb > div > a > img {
+div.BandThumb > div > a > img {
     width: 100%;
     transform: scale(0.9,0.9);
     transition: all 0.5s;
 }
-div.filmThumb > div > a > img:hover {
+div.BandThumb > div > a > img:hover {
     transform:scale(1,1);
 }
-.mainImage, .filmInfo {
+.mainImage, .BandInfo {
     padding:5px;
 }
-.filmInfo {
-    flex:0 0 50%;
+.BandInfo {
+    flex: 0 0 50%;
+    padding-left: 4em;
+    margin-top: 0;
+    width: 50%;
 }
-.mainImage > img{
-    width:100%;
+
+.BandDetails {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
 }
-.filmInfo h2{
+
+.ConcertDetails {
+    padding-left: 4em;
+    width: 50%;
+}
+
+.ConcertInfo {
+    margin: 0;
+    text-align: justify;
+}
+
+.ConcertTitle {
+    margin: 0;
+    text-align: justify
+}
+
+#ConcertHolder {
+    display: flex;
+}
+
+
+.mainImage
+{
+    width: 50%;
+    margin-right: 5%;
+}
+
+
+.BandInfo h2{
     margin-top:0;
 }
 input[type=number] {
@@ -93,24 +197,45 @@ input[type=number] {
 }
 .searchBox{
     padding:5px;
-    font-size:120%;
 }
 .cta {
-    border-radius: 6px;
-    margin-top: 20px;
-    -webkit-appearance: none;
-    background: none;
-    border: none;
-    font-size: 1.2em;
-    color: #000;
-    text-transform: uppercase;
-    text-decoration: none;
-    background-color: var(--button-color);
-    padding: 10px 25px;
+    width: 100%;
+    padding: 15px 10px;
 }
-.fullWidth{
-    flex: 0 0 100%;
+
+.fullWidth {
+    display: flex;
+    flex-basis: 33%;
+    justify-content: space-evenly;
+    align-items: flex-end;
 }
+
+.smallResult {
+    width: auto !important;
+    height: 100%;
+    width: 20% !important;
+}
+
+form div {
+    width: 100%;
+    padding-right: 2%;
+    padding-left: 2%;
+    display: block;
+}
+
+/*
+form div+div+div+div {
+    width: 50%;
+}
+form [type ='submit']{
+    width: 50%;
+}*/
+
+input[type ='text'], select{
+    width: 100%;
+    padding: 15px 10px;
+}
+
 .fullCart th, .fullCart td{
     padding:5px 8px;
 }
@@ -137,4 +262,24 @@ input[type=number] {
         margin: 10px 0;
         background-color: var(--button-color);
         padding: 10px 25px;
+}
+
+.half-width 
+{
+    width: 50%;
+    margin: auto;
+}
+
+.selection {
+    display: flex;
+}
+
+.Banner 
+{
+    width: 50%;
+}
+
+.Banner2 
+{
+    width: 50%;
 }

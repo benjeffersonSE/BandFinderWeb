@@ -54,16 +54,26 @@ th{
 td,th{
     padding:3px 7px;
 }
-tr:nth-child(even) {
-    background: #CCC;
+tr {
+    background: #FFF;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
 }
+
+.topRow {
+    background: #CCC;
+    border-collapse: collapse;
+    border: 1px solid #FFF;
+    cursor: pointer;
+}
+
 form>div{
     padding-top:10px;
 }
 label{
     display:block;
 }
-input[type=text], input[type=password], textarea {
+input[type=text], input[type=password], input[type=date], input[type=file], input[type=time], textarea {
     font-family: Helvetica, Arial, sans-serif;
     padding: 3px 5px;
     font-size: 1.2em;
@@ -88,4 +98,8 @@ input[type=text], input[type=password], textarea {
 .delete, .error {
     background-color: var(--delete-colour);
     color: #fff;
+}
+
+.hidden {
+    display: none !important;
 }

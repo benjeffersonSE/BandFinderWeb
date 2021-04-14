@@ -1,0 +1,56 @@
+﻿@model BandFinder.Models.BandForm
+@{
+    Layout = "_CMS";
+}
+<h1>@Model.BandTitle</h1>
+
+
+<form method="post" enctype="multipart/form-data">
+    <input type="hidden" name="BandID" value="@Model.BandID" />
+    <input type="hidden" name="BandTitle" value="@Model.BandTitle" />
+    <input type="hidden" name="BandGenre" value="@Model.BandGenre" />
+    <input type="hidden" name="BandDescription" value="@Model.BandDescription" />
+    <input type="hidden" name="BandPrice" value="@Model.BandPrice" />
+    <input type="hidden" name="Stars" value="@Model.Stars" />
+    <input type="hidden" name="BandDate" value="@Model.BandDate" />
+    <input type="hidden" name="BandArea" value="@Model.BandArea" />
+    <input type="hidden" name="BandImageMobileName" value="@ViewBag.ImageNameSmall" />
+    
+
+    <div>
+        <label asp-for="BandImage">Band Image Large</label>
+        <input id="fileNameLarge" type="text" asp-for="BandImageName" value="@ViewBag.ImageNameLarge" />
+        <input asp-for="BandImage" type="file" id="selectedLargeFile" style="display: none;" />
+        <input type="button" class="add" value="Browse..." onclick="document.getElementById('selectedLargeFile').click();" />
+        <span asp-validation-for="BandImage"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Update" class="edit" />
+    </div>
+
+</form>
+
+<script>
+    document.getElementById('selectedLargeFile').onchange = uploadOnChangeLarge;
+
+    function uploadOnChangeLarge() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameLarge').value = filename;
+    }
+
+    document.getElementById('selectedSmallFile').onchange = uploadOnChangeSmall;
+
+    function uploadOnChangeSmall() {
+        var filename = this.value;
+        var lastIndex = filename.lastIndexOf("\\");
+        if (lastIndex >= 0) {
+            filename = filename.substring(lastIndex + 1);
+        }
+        document.getElementById('fileNameSmall').value = filename;
+    }
+</script>

@@ -1,6 +1,6 @@
 using System;
 
-namespace CRUDFilmDbProject.Models
+namespace BandFinder.Models
 {
     public class ErrorViewModel
     {

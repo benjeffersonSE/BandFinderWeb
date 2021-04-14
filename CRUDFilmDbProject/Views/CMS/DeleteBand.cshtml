@@ -1,0 +1,17 @@
+﻿@model BandFinder.Models.Band
+@{
+    Layout = "_CMS";
+    ViewData["Title"] = "Delete Band";
+}
+
+<form method="post">
+
+    <input type="hidden" name="BandID" value="@Model.BandID" />
+
+    <p>Delete Band @Model.BandTitle?</p>
+
+    <p><input type="submit" value="Delete" class="delete" /></p>
+
+    <p><a asp-controller="CMS" asp-action="Index" class="add">Keep</a><br></p>
+
+</form>

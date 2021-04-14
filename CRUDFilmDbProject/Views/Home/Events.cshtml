@@ -1,0 +1,119 @@
+@{
+    ViewData["Title"] = "Events";
+    ViewData["PageHeading"] = "Events";
+}
+
+<div class="form">
+
+    <form asp-action="Events" class="fullWidth">
+        
+        <div>
+            <label for="SearchVenue"><p>Search by Venu:</p></label>
+
+            @if (ViewData["SearchVenue"] == null) // sets default to 'all Concerts' when no previouse searches have been made
+            {
+                ViewData["SearchVenue"] = "All Venues";
+            }
+
+            <input type="text" id="SearchVenue" name="SearchVenue" class="searchBox" asp-for="@ViewData["SearchVenue"]" />
+
+        </div>
+
+        <div>
+            <label for="SearchBand"><p>Search by Band:</p></label>
+
+            @if (ViewData["SearchBand"] == null) // sets default to 'all Concerts' when no previouse searches have been made
+            {
+                ViewData["SearchBand"] = "All Bands";
+            }
+
+            <input type="text" id="SearchBand" name="SearchBand" class="searchBox" asp-for="@ViewData["SearchBand"]" />
+
+        </div>
+
+        <div>
+            <label for="StartDate"><p>Start Date:</p></label>
+
+            @if ((string)ViewData["StartDate"] == (DateTime.MinValue.ToString("yyyy-MM-dd"))) 
+            {
+                ViewData["StartDate"] = DateTime.Today.ToString("yyyy-MM-dd");
+            }
+
+            <input type="date" id="StartDate" name="StartDate" class="searchBox" asp-for="@ViewData["StartDate"]" />
+
+        </div>
+
+        <div>
+            <label for="EndDate"><p>End Date:</p></label>
+
+            @if ((string)ViewData["EndDate"] == (DateTime.MinValue.ToString("yyyy-MM-dd")))
+            {
+                DateTime today = DateTime.Today;
+                ViewData["EndDate"] = today.AddYears(1).ToString("yyyy-MM-dd");
+            }
+
+            <input type="date" id="EndDate" name="EndDate" class="searchBox" asp-for="@ViewData["EndDate"]" />
+        </div>
+
+        <div>
+            <label for="locationType"><p>Location:</p></label>
+            <select name="locationType" id="locationType">
+                <option value="All Locations">All Locations</option>
+                @foreach (var location in (List<string>)@ViewData["ConcertLocation"])
+                {
+                    if (location == (string)@ViewData["FilterConcertLocation"])
+                    {
+                        <option value="@location" selected>@location</option>
+                    }
+                    else
+                    {
+                        <option value="@location">@location</option>
+                    }
+                }
+            </select>
+        </div>
+
+        <div>
+            <input type="submit" value="Search" class="cta" />
+        </div>
+    </form>
+
+    <div id="Result">
+        <div class="concertTable">
+            @if (ViewData["SearchVenue"] != null && ViewData["SearchVenue"].ToString() != String.Empty)
+            {
+                @if (ViewData["SearchBand"] != null && ViewData["SearchBand"].ToString() != String.Empty)
+                {
+                    @foreach (var item in Model)
+                    {
+
+                        <div class="concertRow">
+                            <div class="concertDate">
+                                @item.Date.ToString("MMMM")
+                                <br>
+                                @item.Date.ToString("dd")
+                            </div>
+
+                            <div class="concertSummery">
+                                @item.Venue
+                                <br>
+                                @item.Date.ToString("MMMM dd") | @item.Time
+                            </div>
+
+                            <div class="concertTickets">
+                                <div class="BandButton">
+                                    <a asp-controller="Home" asp-action="ConcertDetails" asp-route-id="@item.ConcertID">Tickets</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    if (Model.Count == 0)
+                    {
+                        <p>Sorry no matches.</p>
+                    }
+                }
+            }
+        </div>
+</div>
+
+
