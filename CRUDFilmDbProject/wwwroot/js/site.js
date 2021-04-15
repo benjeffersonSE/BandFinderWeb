@@ -23,7 +23,7 @@ $('input').on('keypress', function(event) {
 });
 
 //open drop down rows to
-function OpenRows(clickedRow)//rows id passed in from database management.php
+function OpenRows(clickedRow)//rows id passed in from cms
 {
     var elements = document.querySelectorAll(".tableRowButton,.tableRow");
 
